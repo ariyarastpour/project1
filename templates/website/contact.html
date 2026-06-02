@@ -1,13 +1,259 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="{% static 'general.css' %}">
 </head>
 <body>
-    <h1>
-        CONTACT PAGE
-    </h1>
+
+    <img src="{% static 'contact_page.jpg' %}"
+      class="object-cover w-full md:h-auto h-[680px] brightness-75" alt="image">
+    <div class="absolute inset-0 bg-black/30"></div>
+
+    <header class="absolute top-0 left-0 gap-3 z-50 w-full md:px-6 px-3">
+        <div class="flex flex-col gap-8 justify-center">
+            <nav class="flex relative z-30 w-full">
+
+                    <!-- پنجره مودال برای منوی موبایل -->
+                    <div id="mobile-modal"
+                        class="fixed inset-0 z-40 bg-black bg-opacity-50 backdrop-blur-sm flex items-center justify-center invisible opacity-0 transition-all duration-300">
+                        <div class="bg-white p-8 rounded-lg shadow-xl max-w-sm w-full">
+                            <!-- دکمه بستن مودال -->
+                            <div class="flex justify-end mb-4">
+                                <button id="close-modal-button"
+                                    class="text-gray-500 hover:text-gray-700 text-3xl font-bold">&times;</button>
+                            </div>
+                            <!-- لیست منو در مودال -->
+                            <ul class="flex flex-col gap-5 text-black font-semibold">
+                                <li><a href="{% url 'website:home' %}" class="block py-2 text-lg  px-4 rounded-md">Home</a></li>
+                                <li><a href="{% url 'website:about' %}" class="block py-2 text-lg  px-4 rounded-md">About Us</a></li>
+                                <li><a href="{% url 'blog:index' %}" class="block py-2 text-lg px-4 rounded-md">Blog</a></li>
+
+                                <li class="relative group">
+                                    <button class="flex items-center gap-1 px-4 py-2 w-full text-left">
+                                        <span class="text-lg">Destinations</span>
+                                        <svg class="w-4 h-4 ml-auto transition-transform duration-300 group-hover:rotate-180"
+                                            fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                                        </svg>
+                                    </button>
+                                    <!-- زیرمنوهای Destination در مودال -->
+                                    <ul
+                                        class="ml-4 mt-2 space-y-2 max-h-0 opacity-0 translate-y-2 transition-all duration-300">
+                                        <li><a href="#" class="block px-4 py-2  rounded-md">EUROPE</a>
+                                        </li>
+                                        <li><a href="#" class="block px-4 py-2  rounded-md">ASIA</a>
+                                        </li>
+                                        <li><a href="#" class="block px-4 py-2  rounded-md">AFRICA</a>
+                                        </li>
+                                    </ul>
+                                </li>
+
+                                <li><a href="{% url 'website:contact' %}" class="text-lg">Contact</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+
+                <nav class="relative z-30 w-full">
+                    <div class="flex md:flex-col gap-7 items-center md:-mt-2 -mt-3 justify-between w-full md:px-0 px-2">
+                        <!-- لوگوی سایت -->
+                        <div class="flex items-center">
+                          <img src="{% static 'logo.png' %}"
+                            class="md:w-44 w-40" alt="LOGO">
+                        </div>
+
+                        <!-- دکمه منوی همبرگری (برای موبایل) -->
+                        <button id="mobile-menu-button"
+                            class="md:hidden block p-3 bg-[#444444] rounded-sm text-white focus:outline-none focus:ring-2 focus:ring-white">
+                            <svg class="ast-mobile-svg ast-menu-svg" fill="currentColor" version="1.1" xmlns="http://www.w3.org/2000/svg" 
+                            width="24" height="24" viewBox="0 0 24 24"><path d="M3 13h18c0.552 0 1-0.448 1-1s-0.448-1-1-1h-18c-0.552 0-1 0.448-1 1s0.448 1 1 1zM3
+                            7h18c0.552 0 1-0.448 1-1s-0.448-1-1-1h-18c-0.552 0-1 0.448-1 1s0.448 1 1 1zM3 19h18c0.552 0 1-0.448 1-1s-0.448-1-1-1h-18c-0.552 0-1 0.448-1 1s0.448 1 1 1z"></path>
+                            </svg>
+                        </button>
+
+                        <!-- لیست منو (برای دسکتاپ) - با قابلیت باز و بسته شدن توسط جاوااسکریپت -->
+                        <ul class="hidden md:flex items-center justify-center gap-9 text-white font-semibold w-full">
+                            <li><a href="{% url 'website:home' %}" class="transition text-lg hover:opacity-80">Home</a></li>
+                            <li><a href="{% url 'website:about' %}" class="transition text-lg hover:opacity-80">About Us</a></li>
+                            <li><a href="{% url 'blog:index' %}" class="transition text-lg hover:opacity-80">Blog</a></li>
+
+                            <li class="relative"> <!-- 'group' class حذف شد -->
+                                <!-- دکمه برای باز و بسته کردن زیرمنو -->
+                                <button id="destination-desktop-button"
+                                    class="flex items-center gap-1 text-white font-semibold focus:outline-none">
+                                    <span class="text-lg">Destinations</span>
+                                    <svg id="destination-desktop-arrow"
+                                        class="w-4 h-4 transition-transform duration-300" fill="none"
+                                        stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                                    </svg>
+                                </button>
+
+                                <!-- زیرمنوی Destination برای دسکتاپ - ابتدا مخفی -->
+                                <ul id="destination-desktop-submenu"
+                                    class="absolute right-0 mt-2 overflow-hidden rounded-md bg-white text-black shadow-lg max-h-0 opacity-0 translate-y-2 transition-all duration-300 z-10">
+                                    <li><a href="#" class="block px-4 py-2 ">EUROPE</a></li>
+                                    <li><a href="#" class="block px-4 py-2 ">ASIA</a></li>
+                                    <li><a href="#" class="block px-4 py-2 ">AFRICA</a></li>
+                                </ul>
+                            </li>
+
+                                <li><a href="{% url 'website:contact' %}" class="text-lg">Contact</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- پنجره مودال برای منوی موبایل -->
+                    <div id="mobile-modal"
+                        class="fixed inset-0 z-40 bg-black bg-opacity-50 backdrop-blur-sm flex items-center justify-center invisible opacity-0 transition-all duration-300">
+                        <div class="bg-white p-8 rounded-lg shadow-xl max-w-sm w-full">
+                            <!-- دکمه بستن مودال -->
+                            <div class="flex justify-end mb-4">
+                                <button id="close-modal-button"
+                                    class="text-gray-500 hover:text-gray-700 text-3xl font-bold">&times;</button>
+                            </div>
+                            <!-- لیست منو در مودال -->
+                            <ul class="flex flex-col gap-5 text-black font-semibold">
+                                <li><a href="{% url 'website:home' %}" class="block py-2 text-lg px-4 rounded-md">Home</a></li>
+                                <li><a href="{% url 'website:about' %}" class="block py-2 text-lg  px-4 rounded-md">About</a></li>
+
+                                <li class="relative group">
+                                    <button class="flex items-center gap-1 px-4 py-2 w-full text-left">
+                                        <span class="text-lg">Destination</span>
+                                        <svg class="w-4 h-4 ml-auto transition-transform duration-300 group-hover:rotate-180"
+                                            fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                                        </svg>
+                                    </button>
+                                    <!-- زیرمنوهای Destination در مودال -->
+                                    <ul
+                                        class="ml-4 mt-2 space-y-2 max-h-0 opacity-0 translate-y-2 transition-all duration-300">
+                                        <li><a href="#" class="block px-4 py-2  rounded-md">EUROPE</a>
+                                        </li>
+                                        <li><a href="#" class="block px-4 py-2  rounded-md">ASIA</a>
+                                        </li>
+                                        <li><a href="#" class="block px-4 py-2  rounded-md">AFRICA</a>
+                                        </li>
+                                    </ul>
+                                </li>
+
+                                <li><a href="{% url 'website:contact' %}" class="text-lg">Contact</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+            <!-- کد جاوا اسکریپت برای کنترل مودال و منوی دسکتاپ -->
+            <script>
+                // --- کنترل منوی دسکتاپ ---
+                const destinationDesktopButton = document.getElementById('destination-desktop-button');
+                const destinationDesktopSubmenu = document.getElementById('destination-desktop-submenu');
+                const destinationDesktopArrow = document.getElementById('destination-desktop-arrow'); // آیکون فلش در دسکتاپ
+                // تابع برای باز و بسته کردن زیرمنوی دسکتاپ
+                function toggleDesktopSubmenu() {
+                    const isExpanded = destinationDesktopSubmenu.classList.contains('max-h-60');
+                    if (isExpanded) {
+                        // بستن زیرمنو
+                        destinationDesktopSubmenu.classList.remove('max-h-60', 'opacity-100', 'translate-y-0');
+                        destinationDesktopSubmenu.classList.add('max-h-0', 'opacity-0', 'translate-y-2');
+                        destinationDesktopArrow.classList.remove('rotate-180');
+                    } else {
+                        destinationDesktopSubmenu.classList.remove('max-h-0', 'opacity-0', 'translate-y-2');
+                        destinationDesktopSubmenu.classList.add('max-h-60', 'opacity-100', 'translate-y-0');
+                        destinationDesktopArrow.classList.add('rotate-180');
+                    }
+                }
+                // باز کردن/بستن زیرمنو با کلیک روی دکمه DESTINATION در دسکتاپ
+                if (destinationDesktopButton && destinationDesktopSubmenu && destinationDesktopArrow) {
+                    destinationDesktopButton.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        toggleDesktopSubmenu();
+                    });
+                }
+                // بستن زیرمنوی دسکتاپ با کلیک خارج از آن
+                window.addEventListener('click', (event) => {
+                    if (event.target === mobileModal) {
+                        closeModal();
+                    }
+                    // بستن زیرمنوی دسکتاپ اگر خارج از آن کلیک شود
+                    if (destinationDesktopSubmenu && destinationDesktopButton &&
+                        !destinationDesktopSubmenu.contains(event.target) && !destinationDesktopButton.contains(event.target)) {
+                        const isExpanded = destinationDesktopSubmenu.classList.contains('max-h-60');
+                        if (isExpanded) {
+                            toggleDesktopSubmenu();
+                        }
+                    }
+                });
+                // --- کنترل مودال موبایل ---
+                const mobileMenuButton = document.getElementById('mobile-menu-button');
+                const closeModalButton = document.getElementById('close-modal-button');
+                const mobileModal = document.getElementById('mobile-modal');
+                function openModal() {
+                    if (mobileModal) {
+                        mobileModal.classList.remove('invisible', 'opacity-0');
+                        mobileModal.classList.add('visible', 'opacity-100');
+                    }
+                }
+                function closeModal() {
+                    if (mobileModal) {
+                        mobileModal.classList.remove('visible', 'opacity-100');
+                        mobileModal.classList.add('invisible', 'opacity-0');
+                    }
+                    closeAllSubmenusInModal();
+                    const isDesktopSubmenuExpanded = destinationDesktopSubmenu && destinationDesktopSubmenu.classList.contains('max-h-60');
+                    if (isDesktopSubmenuExpanded) {
+                        toggleDesktopSubmenu();
+                    }
+                }
+                if (mobileMenuButton) {
+                    mobileMenuButton.addEventListener('click', openModal);
+                }
+                if (closeModalButton) {
+                    closeModalButton.addEventListener('click', closeModal);
+                }
+                // --- کنترل زیرمنوهای داخل مودال موبایل ---
+                const destinationButtonsInModal = mobileModal ? mobileModal.querySelectorAll('.group') : [];
+                destinationButtonsInModal.forEach(buttonContainer => {
+                    const button = buttonContainer.querySelector('button');
+                    const dropdown = buttonContainer.querySelector('ul');
+                    const svgIcon = button ? button.querySelector('svg') : null;
+                    if (button && dropdown && svgIcon) {
+                        button.addEventListener('click', (e) => {
+                            e.stopPropagation(); // جلوگیری از بسته شدن مودال هنگام کلیک روی دکمه زیرمنو
+                            dropdown.classList.toggle('max-h-0');
+                            dropdown.classList.toggle('opacity-0');
+                            dropdown.classList.toggle('translate-y-2');
+                            dropdown.classList.toggle('max-h-60');
+                            dropdown.classList.toggle('opacity-100');
+                            dropdown.classList.toggle('translate-y-0');
+                            svgIcon.classList.toggle('rotate-180');
+                        });
+                    }
+                });
+                // تابعی برای بستن همه زیرمنوهای باز شده در مودال (هنگام بستن مودال)
+                function closeAllSubmenusInModal() {
+                    const openDropdowns = mobileModal ? mobileModal.querySelectorAll('.group ul') : [];
+                    openDropdowns.forEach(dropdown => {
+                        dropdown.classList.add('max-h-0', 'opacity-0', 'translate-y-2');
+                        dropdown.classList.remove('max-h-60', 'opacity-100', 'translate-y-0');
+                        const svgIcon = dropdown.previousElementSibling ? dropdown.previousElementSibling.querySelector('svg') : null;
+                        if (svgIcon) {
+                            svgIcon.classList.remove('rotate-180');
+                        }
+                    });
+                }
+            </script>
+        </div>
+        <div class="md:mt-44 mt-14 items-center">
+            <h1 class="text-white md:text-8xl text-4xl text-center md:font-bold font-semibold">Contact Us</h1>
+            <p></p>
+        </div>
+    </header>
 </body>
 </html>
+{% endblock %}
