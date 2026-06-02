@@ -6,5 +6,5 @@ app_name = 'website'
 urlpatterns = [
     path('', Home_view, name='home'),
     path('about/', About_view, name='about'),
-    path('/contact/', Contact_view, name='contact')
+    path('contact/', Contact_view, name='contact')
 ]
