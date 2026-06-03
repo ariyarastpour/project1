@@ -13,5 +13,8 @@ class Post(models.Model):
     updated_date = models. DateField(auto_now=True)
     published_date = models.DateField(null=True)
 
+    class Meta:
+        ordering = ['-created_date']
+
     def __str__(self):
         return self.title
