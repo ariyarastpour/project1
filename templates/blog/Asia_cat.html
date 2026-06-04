@@ -1,26 +1,23 @@
-{% extends "website/base.html" %}
+{% extends 'website/base.html' %}
 {% load static %}
 {% block content %}
+<!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home Page</title>
+    <title>Asia Destination</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="{% static 'general.css' %}">
     <style>
-        p,
-        h1,h2,h3,a,span {
-            font-family: 'Playfair Display', serif;
-        }
+      p,
+      h1,h2,h3,a,span {
+        font-family: 'Playfair Display', serif;
+      }
     </style>
 </head>
-
-
-<body class="bg-[#F5F5F5] m-0">
-  <div class="relative w-full">
-     <img src="{% static 'index-banner.jpg' %}"
+<body>
+    <div class="relative w-full">
+        <img src="{% static 'index-banner.jpg' %}"
           class="object-cover w-full md:h-auto h-[680px] brightness-75" alt="image">
         <div class="absolute inset-0 bg-black/30"></div>
 
@@ -290,7 +287,8 @@
 
             <div class="md:mt-36 mt-16 flex flex-col items-center gap-14">
                 <div class="flex flex-col items-center gap-6 text-center">
-                    <h1 class="text-white md:text-7xl text-4xl md:font-bold font-semibold">Wanderlust Travel Blog</h1>
+                    <h1 class="text-white md:text-7xl text-4xl md:font-bold font-semibold">{{post.category.name}}</h1>
+                        {{ post.category.all |join:", " }}
                     <p class="text-white md:text-2xl text-lg drop-shadow-lg">
                         to see something once than hear about it a thousand times!
                     </p>
@@ -308,98 +306,6 @@
             </div>
         </header>
   </div>
-
-    <div class="relative w-full">
-        <section
-            class="absolute md:left-1/2 md:bottom-0 z-40 w-full md:-translate-x-1/2 md:translate-y-1/2 md:px-12 px-5 flex justify-center">
-            <div class="w-full md:w-[1345px] bg-white shadow-2xl min-h-60 md:mt-8 -mt-28 md:py-8 py-6 md:px-32 px-6">
-                <div class="md:gap-8 gap-6 flex flex-col w-full items-center justify-center text-center">
-                  <h2 class="md:text-4xl text-[27px] font-semibold text-[#3A3A3A]">We travel the world, and tell you
-                      how
-                      it looks!
-                  </h2>
-                  <p class="reading-loose text-[#3A3A3A] md:text-lg text-[17px] font-medium">Travel is an opportunity
-                      to discover new places,
-                      experience different cultures, and create memories that stay with us forever. With every
-                      journey, our perspective expands, and we enjoy moments filled with peace, excitement, and the
-                      thrill of exploring something new. From lively cities to untouched nature and peaceful beaches,
-                      every destination has a story to tell.
-                  </p>
-                </div>
-            </div>
-        </section>
-    </div>
-
-    <div class="w-full mx-auto flex md:flex-row flex-col md:pl-9 md:pr-12 md:mt-56 mt-72">
-        <div class="md:w-3/4 px-4 sm:px-8 lg:px-8 py-8">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                {% if first_post %}
-                <article class="bg-white shadow-sm overflow-hidden md:col-span-2">
-                    <div class="relative">
-                        <img src="{{first_post.image.url}}" alt="African Wildlife" class="w-full h-72 sm:h-96 object-cover" />
-            
-                        <div class="absolute md:top-0 top-4 left-0 bg-zinc-700 text-white w-24 h-24 flex items-center justify-center text-center">
-                           <div class="flex flex-col">
-                                <span class="text-lg">{{ first_post.published_date|date:"M" }}</span>
-                                <span class="md:text-5xl text-4xl font-semibold">{{ first_post.published_date|date:"j" }}</span>
-                                <span class="text-lg">{{ first_post.published_date|date:"Y" }}</span>
-                            </div>
-                        </div>
-                    </div>
-          
-                    <div class="p-6 sm:p-8">
-                        <h2 class="text-3xl sm:text-4xl font-semibold text-slate-700 mb-3">{{first_post.title}}</h2>
-                        <p class="text-sm font-bold uppercase text-slate-700 mb-6">Africa / Leave a Comment</p>
-                        <p class="text-base sm:text-lg leading-8 text-gray-700 mb-8">{{first_post.disc | truncatechars:155}}</p>
-                        <a href="{% url 'blog:pid' first_post.id %}" class="text-lg text-slate-700 hover:underline">Read More »</a>
-                    </div>
-                </article>
-                {% endif %}
-                {% for post in other_posts %}
-                <article class="bg-white shadow-sm overflow-hidden">
-                    <div class="relative">
-                        <img src="{{post.image.url}}" alt="Great Pyramids of Giza" class="w-full h-64 sm:h-72 object-cover" />
-                        <div class="absolute top-0 left-0 bg-zinc-700 text-white w-24 h-24 flex flex-col items-center justify-center text-center">
-                            <div class="flex flex-col">
-                                <span class="text-lg">{{ post.published_date|date:"M" }}</span>
-                                <span class="text-4xl font-bold">{{ post.published_date|date:"j" }}</span>
-                                <span class="text-lg">{{ post.published_date|date:"Y" }}</span>
-                            </div>
-                        </div>
-                    </div>
-        
-                    <div class="p-6 sm:p-8">
-                        <h2 class="text-2xl md:text-[1.8rem] font-bold text-slate-700 mb-2">{{post.title}}</h2>
-                        <p class="text-sm md:text-md font-semibold uppercase text-slate-700 mb-8">{{post.category.all |join:", "}} / Leave a Comment</p>
-                        <p class="text-base md:text-md leading-8 text-gray-700 mb-8">{{post.disc | truncatechars:155}}</p>
-                        <a href="{% url 'blog:pid' post.id %}" class="text-lg text-slate-700 hover:underline">Read More »</a>
-                    </div>
-                </article>
-                {% endfor %}
-            </div>
-        </div>
-        <div class="flex flex-col w-1/4 py-[30px] mr-6 gap-10">
-            <div class="flex items-center justify-center py-8 px-1 bg-white">
-               <div class="relative w-11/12 px-3">
-                    <input 
-                        class="bg-[#FAFAFA] py-2 px-4 font-medium text-[#666] text-lg border border-solid border-[#dddddd] rounded-sm w-full" type="text"
-                        placeholder="Search...">
-                    <img class="w-3 h-3 absolute right-6 top-1/2 -translate-y-1/2" src="{% static 'search-icon.webp' %}" alt="search">
-                </div>
-            </div>
-            <div class="flex flex-col p-9 gap-5 bg-white">
-                <h2 class="text-[1.5rem] text-[#3a3a3a] font-semibold">Recent Posts</h2>
-               <div class="flex flex-col gap-1">
-                    {% for post in recent_posts %}
-                    <p class="md:text-lg text-md text-[#444444] font-medum hover:text-black transition">{{post.title}}</p>
-                    {% endfor %}
-                </div>
-            </div>
-        </div>
-    </div>
-
-    {% endblock %} 
-
 </body>
-
 </html>
+{% endblock %}

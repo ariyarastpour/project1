@@ -15,8 +15,25 @@ def Home_view(request):
     }
     return render(request, 'website/index.html', context)
 
-def About_view(request):
-    return render(request, 'website/about.html')
+def Base_view(request):
+    # query in  footer
+    recent_posts = Post.objects.filter(status=1).order_by('-published_date')
+    context = {
+        'recent_posts': recent_posts
+    }
+    return render(request, 'website/base.html', context)
+
+def About_view(request):# query in  footer
+    recent_posts = Post.objects.filter(status=1).order_by('-published_date')
+    context = {
+        'recent_posts': recent_posts
+    }
+    return render(request, 'website/about.html',context)
 
 def Contact_view(request):
-    return render(request, 'website/contact.html')
+    # query in  footer
+    recent_posts = Post.objects.filter(status=1).order_by('-published_date')
+    context = {
+        'recent_posts': recent_posts
+    }
+    return render(request, 'website/contact.html',context)
