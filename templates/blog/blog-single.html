@@ -16,7 +16,7 @@
   </style>
 </head>
 
-<body>
+<body class="bg-[#F5F5F5]">
   <div class="relative w-full">
     <img src="{% static 'index-banner.jpg' %}"
       class="object-cover w-full md:h-auto h-[645px] brightness-75" alt="image">
@@ -244,14 +244,36 @@
           </script>
         </div>
         <div class="md:mt-56 mt-24 flex flex-col items-center gap-14">
-          <div class="flex flex-col items-center gap-6 text-center">
-              <h1 class="text-white md:text-[5.2rem] text-4xl md:font-bold font-semibold">{{post.title}}</h1>
-              <p class="text-white md:text-lg text-sm drop-shadow-xl">
-                Single Page
-              </p>
+          <div class="flex flex-col items-center gap-7 text-center">
+              <h1 class="text-white md:text-[5.1rem] text-4xl md:font-bold font-semibold">{{post.title}}</h1>
+              <div class="flex gap-2 text-white md:text-lg text-sm drop-shadow-xl">
+                <a href="{% url 'website:home' %}">Home</a>
+                <span> »</span>
+                <a href="{% url 'blog:index' %}">Blog</a>
+                <span> »</span>
+                <a href="{% url 'blog:pid' pid=post.id %}">{{post.id}}</a>
+              </div>
           </div>
         </div>
     </header>
+  </div>
+
+  <div class="w-full mx-auto container p-[4rem] px-[8rem] items-center justify-center">
+    <section class="bg-white p-16">
+      <div class="flex flex-col">
+        <p class="text-slate-700 uppercase text-md mb-2"> Leave a Comment / Africa / By harshadd </p>
+        <p class="text-[#3A3A3A] font-medium text-lg leading-7 text-justify"> This article explores an important and practical topic within the relevant field.
+        It presents the main ideas clearly and precisely to ensure better understanding. Key points are discussed along with the necessary explanations for greater clarity. 
+        The purpose of this post is to provide useful, concise, and reliable content for readers. We hope this article proves to be informative and valuable to you.</p>
+        <img class="mt-8 text-lg" src="{% static 'home-banner.jpg' %}" alt="image">
+        <p class=" mt-5 text-[#3A3A3A] text-lg leading-8">{{post.disc}}</p>
+      </div>
+    </section>
+    <section class="bg-white p-12 mt-12">
+      <div class="flex flex-col">
+        <h2 class="text-[2rem] text-[#3A3A3A] font-semibold">ABOUT THE AUTHER</h2>
+      </div>
+    </section>
   </div>
 
 </body>

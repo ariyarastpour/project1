@@ -14,12 +14,7 @@ def blog_view(request):
     }
     return render(request, 'blog/blog-home.html',context)
 
-def blog_single(request):
-    post = Post.objects.filter(status=1)
-    context = {'post':post}
-    return render(request, 'blog/blog-single.html', context)
-
 def blog_pid(request,pid):
-    post = get_object_or_404(Post, pk=pid)
+    post = get_object_or_404(Post, pk=pid,status=1)
     context = {'post':post}
     return render(request,'blog/blog-single.html',context)

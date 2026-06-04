@@ -320,7 +320,7 @@
         </section>
     </div>
 
-    <div class="w-full mx-auto flex md:flex-row flex-col md:px-16 mt-48">
+    <div class="w-full mx-auto flex md:flex-row flex-col md:pl-9 md:pr-12 mt-56">
         <div class="md:w-3/4 px-4 sm:px-8 lg:px-8 py-8">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                 {% if first_post %}
@@ -328,12 +328,12 @@
                     <div class="relative">
                         <img src="{% static 'blog\african-wildlife-free-img.jpg' %}" alt="African Wildlife" class="w-full h-72 sm:h-96 object-cover" />
             
-                        <div class="absolute top-0 left-0 bg-zinc-700 text-white w-28 h-32 flex flex-col items-center justify-center text-center">
-                           <span>
-                                <div class="text-lg leading-none">{{ first_post.published_date|date:"M" }}</div>
-                                <div class="text-5xl font-bold leading-tight">{{ first_post.published_date|date:"j" }}</div>
-                                <div class="text-lg leading-none">{{ first_post.published_date|date:"Y" }}</div>
-                            </span>
+                        <div class="absolute top-0 left-0 bg-zinc-700 text-white w-24 h-24 flex items-center justify-center text-center">
+                           <div class="flex flex-col">
+                                <span class="text-lg">{{ first_post.published_date|date:"M" }}</span>
+                                <span class="text-5xl font-semibold">{{ first_post.published_date|date:"j" }}</span>
+                                <span class="text-lg">{{ first_post.published_date|date:"Y" }}</span>
+                            </div>
                         </div>
                     </div>
           
@@ -341,28 +341,28 @@
                         <h2 class="text-3xl sm:text-4xl font-semibold text-slate-700 mb-3">{{first_post.title}}</h2>
                         <p class="text-sm font-bold uppercase text-slate-700 mb-6">Africa / Leave a Comment</p>
                         <p class="text-base sm:text-lg leading-8 text-gray-700 mb-8">{{first_post.disc | truncatechars:155}}</p>
-                        <a href="{% url 'blog:single' %}" class="text-lg text-slate-700 hover:underline">Read More »</a>
+                        <a href="{% url 'blog:pid' first_post.id %}" class="text-lg text-slate-700 hover:underline">Read More »</a>
                     </div>
                 </article>
                 {% endif %}
                 {% for post in other_posts %}
                 <article class="bg-white shadow-sm overflow-hidden">
                     <div class="relative">
-                        <img src="{% static 'blog\dubai-desert-safari-free-img.jpg' %}" alt="Great Pyramids of Giza" class="w-full h-64 sm:h-72 object-cover" />
+                        <img src="{% static 'blog/dubai-desert-safari-free-img.jpg' %}" alt="Great Pyramids of Giza" class="w-full h-64 sm:h-72 object-cover" />
                         <div class="absolute top-0 left-0 bg-zinc-700 text-white w-24 h-24 flex flex-col items-center justify-center text-center">
-                            <span>
-                                <div class="text-lg leading-none">{{ post.published_date|date:"M" }}</div>
-                                <div class="text-4xl font-bold leading-tight">{{ post.published_date|date:"j" }}</div>
-                                <div class="text-lg leading-none">{{ post.published_date|date:"Y" }}</div>
-                            </span>
+                            <div class="flex flex-col">
+                                <span class="text-lg">{{ post.published_date|date:"M" }}</span>
+                                <span class="text-4xl font-bold">{{ post.published_date|date:"j" }}</span>
+                                <span class="text-lg">{{ post.published_date|date:"Y" }}</span>
+                            </div>
                         </div>
                     </div>
         
                     <div class="p-6 sm:p-8">
-                        <h2 class="text-2xl sm:text-3xl font-semibold text-slate-700 mb-3">{{post.title}}</h2>
-                        <p class="text-sm font-bold uppercase text-slate-700 mb-6">Africa / Leave a Comment</p>
-                        <p class="text-base sm:text-lg leading-8 text-gray-700 mb-8">{{post.disc | truncatechars:155}}</p>
-                        <a href="{% url 'blog:single' %}" class="text-lg text-slate-700 hover:underline">Read More »</a>
+                        <h2 class="text-2xl md:text-[1.8rem] font-bold text-slate-700 mb-2">{{post.title}}</h2>
+                        <p class="text-sm md:text-md font-semibold uppercase text-slate-700 mb-8">Africa / Leave a Comment</p>
+                        <p class="text-base md:text-md leading-8 text-gray-700 mb-8">{{post.disc | truncatechars:155}}</p>
+                        <a href="{% url 'blog:pid' post.id %}" class="text-lg text-slate-700 hover:underline">Read More »</a>
                     </div>
                 </article>
                 {% endfor %}
@@ -377,11 +377,11 @@
                     <img class="w-3 h-3 absolute right-6 top-1/2 -translate-y-1/2" src="{% static 'search-icon.webp' %}" alt="search">
                 </div>
             </div>
-            <div class="flex flex-col py-5 px-7 gap-6 bg-white">
-                <h2 class="text-[1.35rem] text-[#3a3a3a] font-semibold">Recent Posts</h2>
+            <div class="flex flex-col p-9 gap-5 bg-white">
+                <h2 class="text-[1.5rem] text-[#3a3a3a] font-semibold">Recent Posts</h2>
                <div class="flex flex-col gap-1">
                     {% for post in recent_posts %}
-                    <p class="text-md text-[#444444] font-medum hover:text-black transition">{{post.title}}</p>
+                    <p class="md:text-lg text-md text-[#444444] font-medum hover:text-black transition">{{post.title}}</p>
                     {% endfor %}
                 </div>
             </div>
