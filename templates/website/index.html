@@ -54,15 +54,15 @@
                                     <!-- زیرمنوهای Destination در مودال -->
                                     <ul
                                         class="ml-4 mt-2 space-y-2 max-h-0 opacity-0 translate-y-2 transition-all duration-300">
-                                        <li><a href="#" class="block px-4 py-2  rounded-md">EUROPE</a>
+                                        <li><a href="{% url 'blog:Europe' %}" class="block px-4 py-2  rounded-md">EUROPE</a>
                                         </li>
-                                        <li><a href="#" class="block px-4 py-2  rounded-md">ASIA</a>
+                                        <li><a href="{% url 'blog:Asia' %}" class="block px-4 py-2  rounded-md">ASIA</a>
                                         </li>
-                                        <li><a href="#" class="block px-4 py-2  rounded-md">AFRICA</a>
+                                        <li><a href="{% url 'blog:Africa' %}" class="block px-4 py-2  rounded-md">AFRICA</a>
                                         </li>
-                                        <li><a href="#" class="block px-4 py-2  rounded-md">NORTH AMERIC</a>
+                                        <li><a href="{% url 'blog:North' %}" class="block px-4 py-2  rounded-md">NORTH AMERIC</a>
                                         </li>
-                                        <li><a href="#" class="block px-4 py-2  rounded-md pb-1">SOUTH AMIRECA</a>
+                                        <li><a href="{% url 'blog:South' %}" class="block px-4 py-2  rounded-md pb-1">SOUTH AMIRECA</a>
                                         </li>
                                     </ul>
                                 </li>
@@ -111,11 +111,11 @@
                                 <!-- زیرمنوی Destination برای دسکتاپ - ابتدا مخفی -->
                                 <ul id="destination-desktop-submenu"
                                     class="absolute right-0 mt-2 overflow-hidden rounded-md bg-white text-black shadow-lg max-h-0 opacity-0 translate-y-2 transition-all duration-300 z-10">
-                                    <li><a href="#" class="block px-4 py-2 ">EUROPE</a></li>
-                                    <li><a href="#" class="block px-4 py-2 ">ASIA</a></li>
-                                    <li><a href="#" class="block px-4 py-2 ">AFRICA</a></li>
-                                    <li><a href="#" class="block px-4 py-2 ">NORTH AMERIC</a></li>
-                                    <li><a href="#" class="block px-4 py-2 pb-1">SOUTH AMIRECA</a></li>
+                                    <li><a href="{% url 'blog:Europe' %}" class="block px-4 py-2 ">EUROPE</a></li>
+                                    <li><a href="{% url 'blog:Asia' %}" class="block px-4 py-2 ">ASIA</a></li>
+                                    <li><a href="{% url 'blog:Africa' %}" class="block px-4 py-2 ">AFRICA</a></li>
+                                    <li><a href="{% url 'blog:North' %}" class="block px-4 py-2 ">NORTH AMERIC</a></li>
+                                    <li><a href="{% url 'blog:South' %}" class="block px-4 py-2 pb-1">SOUTH AMIRECA</a></li>
                                 </ul>
                             </li>
 
@@ -151,15 +151,15 @@
                                     <!-- زیرمنوهای Destination در مودال -->
                                     <ul
                                         class="ml-4 mt-2 space-y-2 max-h-0 opacity-0 translate-y-2 transition-all duration-300">
-                                        <li><a href="#" class="block px-4 py-2  rounded-md">EUROPE</a>
+                                        <li><a href="{% url 'blog:Europe' %}" class="block px-4 py-2  rounded-md">EUROPE</a>
                                         </li>
-                                        <li><a href="#" class="block px-4 py-2  rounded-md">ASIA</a>
+                                        <li><a href="{% url 'blog:Asia' %}" class="block px-4 py-2  rounded-md">ASIA</a>
                                         </li>
-                                        <li><a href="#" class="block px-4 py-2  rounded-md">AFRICA</a>
+                                        <li><a href="{% url 'blog:Africa' %}" class="block px-4 py-2  rounded-md">AFRICA</a>
                                         </li>
-                                        <li><a href="#" class="block px-4 py-2  rounded-md">NORTH AMERIC</a>
+                                        <li><a href="{% url 'blog:North' %}" class="block px-4 py-2  rounded-md">NORTH AMERIC</a>
                                         </li>
-                                        <li><a href="#" class="block px-4 py-2  rounded-md pb-1">SOUTH AMIRECA</a>
+                                        <li><a href="{% url 'blog:South' %}" class="block px-4 py-2  rounded-md pb-1">SOUTH AMIRECA</a>
                                         </li>
                                     </ul>
                                 </li>
@@ -378,24 +378,8 @@
                 {% endfor %}
             </div>
         </div>
-        <div class="flex flex-col w-1/4 py-[30px] mr-6 gap-10">
-            <div class="flex items-center justify-center py-8 px-1 bg-white">
-               <div class="relative w-11/12 px-3">
-                    <input 
-                        class="bg-[#FAFAFA] py-2 px-4 font-medium text-[#666] text-lg border border-solid border-[#dddddd] rounded-sm w-full" type="text"
-                        placeholder="Search...">
-                    <img class="w-3 h-3 absolute right-6 top-1/2 -translate-y-1/2" src="{% static 'search-icon.webp' %}" alt="search">
-                </div>
-            </div>
-            <div class="flex flex-col p-9 gap-5 bg-white">
-                <h2 class="text-[1.5rem] text-[#3a3a3a] font-semibold">Recent Posts</h2>
-               <div class="flex flex-col gap-1">
-                    {% for post in recent_posts %}
-                    <p class="md:text-lg text-md text-[#444444] font-medum hover:text-black transition">{{post.title}}</p>
-                    {% endfor %}
-                </div>
-            </div>
-        </div>
+        
+        {% include  "blog/blog-sidebar.html" %}
     </div>
 
     {% endblock %} 

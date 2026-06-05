@@ -9,5 +9,5 @@ urlpatterns = [
     path('/category/Africa', Africa_view, name='Africa'),
     path('/category/Europe', Europe_view, name='Europe'),
     path('/category/Northe-America', North_America_view, name='North'),
-    path('/category/South-America', South_America_view, name='Southe')
+    path('/category/South-America', South_America_view, name='South')
 ]

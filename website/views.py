@@ -19,11 +19,11 @@ def Base_view(request):
     # query in  footer
     recent_posts = Post.objects.filter(status=1).order_by('-published_date')
     context = {
-        'recent_posts': recent_posts
+        'recent_posts': recent_posts,
     }
     return render(request, 'website/base.html', context)
 
-def About_view(request):# query in  footer
+def About_view(request):
     recent_posts = Post.objects.filter(status=1).order_by('-published_date')
     context = {
         'recent_posts': recent_posts
@@ -31,7 +31,6 @@ def About_view(request):# query in  footer
     return render(request, 'website/about.html',context)
 
 def Contact_view(request):
-    # query in  footer
     recent_posts = Post.objects.filter(status=1).order_by('-published_date')
     context = {
         'recent_posts': recent_posts

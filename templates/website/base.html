@@ -17,15 +17,17 @@
         <div class="flex flex-col gap-5 w-full sm:w-1/2 lg:w-1/5">
             <h2 class="text-white font-semibold md:text-2xl text-xl md:pb-3 pb-2">Categories</h2>
             <div class="md:flex md:flex-col grid grid-cols-2 gap-x-6 gap-y-1">
-                <a href="" class="text-white md:text-lg text-md">Africa (3)</a>
-                <a href="" class="text-white md:text-lg text-md">Asia (5)</a>
-                <a href="" class="text-white md:text-lg text-md">Europe (5)</a>
+                <a href="{% url 'blog:Africa' %}" class="text-white md:text-lg text-md hover:text-black transition">Africa</a>
+                <a href="{% url 'blog:Asia' %}" class="text-white md:text-lg text-md hover:text-black transition">Asia</a>
+                <a href="{% url 'blog:Europe' %}" class="text-white md:text-lg text-md hover:text-black transition">Europe</a>
+                <a href="{% url 'blog:North' %}" class="text-white md:text-lg text-md hover:text-black transition">North Ameria</a>
+                <a href="{% url 'blog:South' %}" class="text-white md:text-lg text-md hover:text-black transition">South Ameria</a>
             </div>
         </div>
 
         <div class="flex flex-col gap-5 w-full sm:w-1/2 lg:w-1/5">
             <h2 class="text-white font-semibold md:text-2xl text-xl md:pb-3 pb-2">Recent Posts</h2>
-            <div class="grid grid-cols-2 md:flex md:flex-col md:gap-x-0 md:gap-y-0 gap-x-6 gap-y-1">
+            <div class="flex flex-col md:gap-y-0 gap-x-6 gap-y-1">
                 {% for post in recent_posts %}
                     <a href="{% url 'blog:pid' post.id %}" class="md:text-lg text-md text-white font-medum hover:text-black transition">{{post.title}}</a>
                 {% endfor %}

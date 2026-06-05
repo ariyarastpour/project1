@@ -15,7 +15,7 @@
       }
     </style>
 </head>
-<body>
+<body class="bg-[#F5F5F5]">
     <div class="relative w-full">
         <img src="{% static 'index-banner.jpg' %}"
           class="object-cover w-full md:h-auto h-[680px] brightness-75" alt="image">
@@ -51,15 +51,15 @@
                                     <!-- زیرمنوهای Destination در مودال -->
                                     <ul
                                         class="ml-4 mt-2 space-y-2 max-h-0 opacity-0 translate-y-2 transition-all duration-300">
-                                        <li><a href="#" class="block px-4 py-2  rounded-md">EUROPE</a>
+                                        <li><a href="{% url 'blog:Europe' %}" class="block px-4 py-2  rounded-md">EUROPE</a>
                                         </li>
-                                        <li><a href="#" class="block px-4 py-2  rounded-md">ASIA</a>
+                                        <li><a href="{% url 'blog:Asia' %}" class="block px-4 py-2  rounded-md">ASIA</a>
                                         </li>
-                                        <li><a href="#" class="block px-4 py-2  rounded-md">AFRICA</a>
+                                        <li><a href="{% url 'blog:Africa' %}" class="block px-4 py-2  rounded-md">AFRICA</a>
                                         </li>
-                                        <li><a href="#" class="block px-4 py-2  rounded-md">NORTH AMERIC</a>
+                                        <li><a href="{% url 'blog:North' %}" class="block px-4 py-2  rounded-md">NORTH AMERIC</a>
                                         </li>
-                                        <li><a href="#" class="block px-4 py-2  rounded-md pb-1">SOUTH AMIRECA</a>
+                                        <li><a href="{% url 'blog:South' %}" class="block px-4 py-2  rounded-md pb-1">SOUTH AMIRECA</a>
                                         </li>
                                     </ul>
                                 </li>
@@ -108,11 +108,11 @@
                                 <!-- زیرمنوی Destination برای دسکتاپ - ابتدا مخفی -->
                                 <ul id="destination-desktop-submenu"
                                     class="absolute right-0 mt-2 overflow-hidden rounded-md bg-white text-black shadow-lg max-h-0 opacity-0 translate-y-2 transition-all duration-300 z-10">
-                                    <li><a href="#" class="block px-4 py-2 ">EUROPE</a></li>
-                                    <li><a href="#" class="block px-4 py-2 ">ASIA</a></li>
-                                    <li><a href="#" class="block px-4 py-2 ">AFRICA</a></li>
-                                    <li><a href="#" class="block px-4 py-2 ">NORTH AMERIC</a></li>
-                                    <li><a href="#" class="block px-4 py-2 pb-1">SOUTH AMIRECA</a></li>
+                                    <li><a href="{% url 'blog:Europe' %}" class="block px-4 py-2 ">EUROPE</a></li>
+                                    <li><a href="{% url 'blog:Asia' %}" class="block px-4 py-2 ">ASIA</a></li>
+                                    <li><a href="{% url 'blog:Africa' %}" class="block px-4 py-2 ">AFRICA</a></li>
+                                    <li><a href="{% url 'blog:North' %}" class="block px-4 py-2 ">NORTH AMERIC</a></li>
+                                    <li><a href="{% url 'blog:South' %}" class="block px-4 py-2 pb-1">SOUTH AMIRECA</a></li>
                                 </ul>
                             </li>
 
@@ -148,15 +148,15 @@
                                     <!-- زیرمنوهای Destination در مودال -->
                                     <ul
                                         class="ml-4 mt-2 space-y-2 max-h-0 opacity-0 translate-y-2 transition-all duration-300">
-                                        <li><a href="#" class="block px-4 py-2  rounded-md">EUROPE</a>
+                                        <li><a href="{% url 'blog:Europe' %}" class="block px-4 py-2  rounded-md">EUROPE</a>
                                         </li>
-                                        <li><a href="#" class="block px-4 py-2  rounded-md">ASIA</a>
+                                        <li><a href="{% url 'blog:Asia' %}" class="block px-4 py-2  rounded-md">ASIA</a>
                                         </li>
-                                        <li><a href="#" class="block px-4 py-2  rounded-md">AFRICA</a>
+                                        <li><a href="{% url 'blog:Africa' %}" class="block px-4 py-2  rounded-md">AFRICA</a>
                                         </li>
-                                        <li><a href="#" class="block px-4 py-2  rounded-md">NORTH AMERIC</a>
+                                        <li><a href="{% url 'blog:North' %}" class="block px-4 py-2  rounded-md">NORTH AMERIC</a>
                                         </li>
-                                        <li><a href="#" class="block px-4 py-2  rounded-md pb-1">SOUTH AMIRECA</a>
+                                        <li><a href="{% url 'blog:South' %}" class="block px-4 py-2  rounded-md pb-1">SOUTH AMIRECA</a>
                                         </li>
                                     </ul>
                                 </li>
@@ -285,27 +285,67 @@
 
             </div>
 
-            <div class="md:mt-36 mt-16 flex flex-col items-center gap-14">
+            <div class="md:mt-36 mt-16 flex flex-col items-center">
                 <div class="flex flex-col items-center gap-6 text-center">
-                    <h1 class="text-white md:text-7xl text-4xl md:font-bold font-semibold">{{post.category.name}}</h1>
-                        {{ post.category.all |join:", " }}
+                    <h1 class="text-white md:text-7xl text-4xl md:font-bold font-semibold">Asia Destination</h1>
                     <p class="text-white md:text-2xl text-lg drop-shadow-lg">
                         to see something once than hear about it a thousand times!
                     </p>
                 </div>
-
-                <div class="flex md:flex-row flex-col items-center gap-5">
-                    <a href="#" class="border-2 border-white md:px-8 px-24 py-3 text-lg font-semibold text-white">
-                        SIGN IN
-                    </a>
-                    <a href="#"
-                        class="border-2 border-white bg-white md:px-8 px-24 py-3 text-lg font-semibold text-black">
-                        LOG IN
-                    </a>
-                </div>
             </div>
         </header>
-  </div>
+   </div>
+   <div class="w-full mx-auto flex md:flex-row flex-col md:pl-9 md:pr-12 md:mt-20 mt-44">
+        <div class="md:w-3/4 px-4 sm:px-8 lg:px-8 py-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                {% if first_post %}
+                <article class="bg-white shadow-sm overflow-hidden md:col-span-2">
+                    <div class="relative">
+                        <img src="{{first_post.image.url}}" alt="African Wildlife" class="w-full h-72 sm:h-96 object-cover" />
+            
+                        <div class="absolute md:top-0 top-4 left-0 bg-zinc-700 text-white w-24 h-24 flex items-center justify-center text-center">
+                           <div class="flex flex-col">
+                                <span class="text-lg">{{ first_post.published_date|date:"M" }}</span>
+                                <span class="md:text-5xl text-4xl font-semibold">{{ first_post.published_date|date:"j" }}</span>
+                                <span class="text-lg">{{ first_post.published_date|date:"Y" }}</span>
+                            </div>
+                        </div>
+                    </div>
+          
+                    <div class="p-6 sm:p-8">
+                        <h2 class="text-3xl sm:text-4xl font-semibold text-slate-700 mb-3">{{first_post.title}}</h2>
+                        <p class="text-sm font-bold uppercase text-slate-700 mb-6">Africa / Leave a Comment</p>
+                        <p class="text-base sm:text-lg leading-8 text-gray-700 mb-8">{{first_post.disc | truncatechars:155}}</p>
+                        <a href="{% url 'blog:pid' first_post.id %}" class="text-lg text-slate-700 hover:underline">Read More »</a>
+                    </div>
+                </article>
+                {% endif %}
+                {% for post in other_posts %}
+                <article class="bg-white shadow-sm overflow-hidden">
+                    <div class="relative">
+                        <img src="{{post.image.url}}" alt="Great Pyramids of Giza" class="w-full h-64 sm:h-72 object-cover" />
+                        <div class="absolute top-0 left-0 bg-zinc-700 text-white w-24 h-24 flex flex-col items-center justify-center text-center">
+                            <div class="flex flex-col">
+                                <span class="text-lg">{{ post.published_date|date:"M" }}</span>
+                                <span class="text-4xl font-bold">{{ post.published_date|date:"j" }}</span>
+                                <span class="text-lg">{{ post.published_date|date:"Y" }}</span>
+                            </div>
+                        </div>
+                    </div>
+        
+                    <div class="p-6 sm:p-8">
+                        <h2 class="text-2xl md:text-[1.8rem] font-bold text-slate-700 mb-2">{{post.title}}</h2>
+                        <p class="text-sm md:text-md font-semibold uppercase text-slate-700 mb-8">{{post.category.all |join:", "}} / Leave a Comment</p>
+                        <p class="text-base md:text-md leading-8 text-gray-700 mb-8">{{post.disc | truncatechars:155}}</p>
+                        <a href="{% url 'blog:pid' post.id %}" class="text-lg text-slate-700 hover:underline">Read More »</a>
+                    </div>
+                </article>
+                {% endfor %}
+            </div>
+        </div>
+        
+        {% include  "blog/blog-sidebar.html" %}
+    </div>
 </body>
 </html>
 {% endblock %}
