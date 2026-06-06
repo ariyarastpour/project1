@@ -1,0 +1,5 @@
+{% load static %}
+
+{% for name in categories %}
+    <li><a href="{% url 'blog:category' cat_name=name %}" class="block px-4 py-2 rounded-md">{{name}}</a></li>
+{% endfor %}
