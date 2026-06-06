@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from blog.views import Post,Category
+from blog.views import Post
 
 def Home_view(request):
     posts = Post.objects.filter(status=1)
@@ -15,11 +15,9 @@ def Home_view(request):
 
 def Base_view(request):
     posts = Post.objects.filter(status=1)
-    categories = Category.objects.all()
     recent_posts = Post.objects.filter(status=1).order_by('published_date')
     context = {
         'posts':posts,
-        'categories':categories,
         'recent_posts':recent_posts
     }
     return render(request, 'website/base.html',context)
