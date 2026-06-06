@@ -1,0 +1,10 @@
+{% load static %}
+
+<div class="flex flex-col p-9 gap-5 bg-white">
+    <h2 class="text-[1.5rem] text-[#3a3a3a] font-semibold">Categories</h2>
+    <div class="flex flex-col gap-1">
+        {% for name in categories %}
+            <a href="#" class="md:text-lg text-md text-[#444444] font-medum hover:text-black transition">{{name}}</a>
+        {% endfor %}
+    </div>
+</div>

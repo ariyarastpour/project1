@@ -5,6 +5,7 @@ app_name = 'blog'
 urlpatterns = [
     path('', blog_view, name='index'),
     path('/<int:pid>',blog_pid, name='pid'),
+    #categories
     path('/category/Asia', Asia_view, name='Asia'),
     path('/category/Africa', Africa_view, name='Africa'),
     path('/category/Europe', Europe_view, name='Europe'),
