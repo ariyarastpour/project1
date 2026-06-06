@@ -15,7 +15,7 @@ def recent_posts_footer():
 
 #categories
 @register.inclusion_tag('blog/blog-categories.html')
-def postscategories():
+def posts_categories():
     posts = Post.objects.filter(status=1)
     categories = Category.objects.all()
     cat_dict = {}
