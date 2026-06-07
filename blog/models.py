@@ -16,7 +16,7 @@ class Post(models.Model):
     author_bio = models.CharField(max_length=400,default='Author Biography')
     author_image = models.ImageField(upload_to='blog_posts',default='blog_posts/images.png')
     category = models.ManyToManyField(Category)
-    counted_view = models.IntegerField(default=0)
+    counted_view = models.PositiveIntegerField(default=0)
     status = models.BooleanField(default=False)
     created_date = models.DateField(auto_now_add=True)
     updated_date = models. DateField(auto_now=True)
