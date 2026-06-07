@@ -1,0 +1,24 @@
+{% load static %}
+
+<div class="relative w-full flex items-center justify-center p-4">
+    {% if posts.has_previous %}
+    <a href="?page=posts.previous_page_number" class="absolute left-0 border border-solid border-black px-4 py-2 text-gray-700 hover:text-white hover:bg-gray-700 transition">
+      ← PREVIOUS
+    </a>
+    {% endif %}
+
+    <!-- شماره صفحات -->
+    <div class="flex space-x-1 items-center">
+        {% for i in posts.paginator.page_range %}
+        <a href="?page={{i}}" class="border border-solid border-black text-lg px-3 py-1 text-gray-700 hover:text-white hover:bg-gray-700 active:text-white active:bg-gray-700 transition">
+          {{i}}
+        </a>
+        {% endfor %}
+    </div>
+
+   {% if posts.has_next %}
+  <a  href="?page=posts.next_page_number" class="absolute right-0 border border-solid border-black px-4 py-2 text-gray-700 hover:text-white hover:bg-gray-700 transition">
+    NEXT →
+  </a>
+  {% endif %}
+</div>
