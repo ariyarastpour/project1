@@ -5,12 +5,13 @@ register = template.Library()
 #recent-posts
 @register.inclusion_tag('blog/blog-recent-posts.html')
 def recent_posts():
-    recent_posts = Post.objects.filter(status=1).order_by('published_date')[:6]
+    recent_posts = Post.objects.filter(status=1).order_by('-published_date')[:6]
     return {'recent_posts':recent_posts}
 
+#in footer
 @register.inclusion_tag('blog/blog-footer-recent-posts.html')
 def recent_posts_footer():
-    recent_posts = Post.objects.filter(status=1).order_by('published_date')[:6]
+    recent_posts = Post.objects.filter(status=1).order_by('-published_date')[:6]
     return {'recent_posts':recent_posts}
 
 #categories
@@ -23,6 +24,7 @@ def posts_categories():
         cat_dict[name]=posts.filter(category=name).count()
     return {'categories':cat_dict}
 
+#in footer
 @register.inclusion_tag('blog/blog-categories-footer.html')
 def posts_categories_footer():
     posts = Post.objects.filter(status=1)
@@ -32,6 +34,7 @@ def posts_categories_footer():
         cat_dict[name]=posts.filter(category=name).count()
     return {'categories':cat_dict}
 
+#in header
 @register.inclusion_tag('blog/blog-categories-nav.html')
 def posts_categories_header():
     posts = Post.objects.filter(status=1)
