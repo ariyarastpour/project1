@@ -39,7 +39,8 @@ def Base_view(request):
     return render(request, 'website/base.html',context)
 
 def About_view(request):
-    return render(request, 'website/about.html')
+    posts = Post.objects.all()
+    return render(request, 'website/about.html',{'posts':posts})
 
 def Contact_view(request):
     if request.method == 'POST':
