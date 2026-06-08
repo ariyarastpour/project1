@@ -44,6 +44,7 @@ def posts_categories_header():
         cat_dict[name]=posts.filter(category=name).count()
     return {'categories':cat_dict}
 
+# popular posts
 @register.inclusion_tag('blog/blog-popular-posts.html')
 def popular_posts():
     posts = Post.objects.filter(status=1).order_by('-counted_view')[:6]

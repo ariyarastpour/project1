@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from blog.views import Post
+from django.http import HttpResponse
 from django.core.paginator import Paginator,PageNotAnInteger,EmptyPage
+from website.forms import ContactForm
 
 
 def Home_view(request):
@@ -40,4 +42,13 @@ def About_view(request):
     return render(request, 'website/about.html')
 
 def Contact_view(request):
-    return render(request, 'website/contact.html')
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponse('Message sent successfully!')
+        else:
+            return HttpResponse('Message failed to send.')
+        
+    form = ContactForm()
+    return render(request, 'website/contact.html',{'form':form})
