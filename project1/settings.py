@@ -38,7 +38,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'website.apps.WebsiteConfig',
-    'blog.apps.BlogConfig'
+    'blog.apps.BlogConfig',
+    'django.contrib.humanize',
+    'django.contrib.sites',
+    'debug_toolbar',
+    'robots'
 ]
 
 MIDDLEWARE = [
@@ -49,9 +53,18 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
 
 ROOT_URLCONF = 'project1.urls'
+
+# sites framework
+SITE_ID = 2
+
+#robots
+
+ROBOTS_USE_SITEMAP = True
+ROBOTS_USE_SCHEME_IN_HOST = True
 
 TEMPLATES = [
     {
@@ -124,4 +137,9 @@ MSDIA_ROOT = BASE_DIR / 'media'
 
 STATICFILES_DIRS = [
     BASE_DIR / 'statics'
+]
+
+INTERNAL_IPS = [
+    # toolbar
+    "127.0.0.1"
 ]
