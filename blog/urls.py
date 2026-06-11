@@ -4,7 +4,7 @@ app_name = 'blog'
 
 urlpatterns = [
     path('', blog_view, name='index'),
-    path('/<int:pid>',blog_pid, name='pid'),
+    path('/<int:pid>',blog_single, name='pid'),
     #author url
     path('/author/<str:author_username>',blog_view ,name='author' ),
     #categories url
