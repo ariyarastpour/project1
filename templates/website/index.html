@@ -281,7 +281,7 @@
                         LOG Out
                     </a>
                     {% else %}
-                    <a href="#" class="border-2 border-white md:px-8 px-24 py-3 text-lg font-semibold text-white">
+                    <a href="{% url 'accounts:signup' %}" class="border-2 border-white md:px-8 px-24 py-3 text-lg font-semibold text-white">
                         SIGN Up
                     </a>
                     <a href="{% url 'accounts:login' %}"
